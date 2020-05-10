@@ -3,12 +3,52 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { ValidationError } = require("sequelize");
 const { environment } = require("./config");
+const jwt = require('express-jwt');
+const jwksRsa = require('jwks-rsa');
+
+
 
 const app = express();
 
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
+const index = require('./routes/index')
+
+// Set up Auth0 configuration
+const authConfig = {
+    domain: "dev-1232de9a.auth0.com",
+    audience: "clackurAuthAPI"
+};
+
+// Define middleware that validates incoming bearer tokens
+// using JWKS from dev-1232de9a.auth0.com
+const checkJwt = jwt({
+    secret: jwksRsa.expressJwtSecret({
+        cache: true,
+        rateLimit: true,
+        jwksRequestsPerMinute: 5,
+        jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
+    }),
+
+    audience: authConfig.audience,
+    issuer: `https://${authConfig.domain}/`,
+    algorithm: ["RS256"]
+});
+
+
+app.use('/', index);
+
+app.get('/authorized', checkJwt, (req, res) => {
+    res.send('Secured Resource');
+});
+
+// Define an endpoint that must be called with an access token
+app.get("/api/external", checkJwt, (req, res) => {
+    res.send({
+        msg: "Your Access Token was successfully validated!"
+    });
+});
 
 // Catch unhandled requests and forward to error handler.
 app.use((req, res, next) => {
