@@ -3,9 +3,7 @@ const morgan = require("morgan");
 const cors = require("cors");
 const { ValidationError } = require("sequelize");
 const { environment } = require("./config");
-const jwt = require('express-jwt');
-const jwksRsa = require('jwks-rsa');
-
+const { checkJwt } = require("./auth")
 
 
 const app = express();
@@ -17,26 +15,6 @@ app.use(cors());
 const index = require('./routes/index')
 const usersRouter = require('./routes/users');
 
-// Set up Auth0 configuration
-const authConfig = {
-    domain: "dev-1232de9a.auth0.com",
-    audience: "clackurAuthAPI"
-};
-
-// Define middleware that validates incoming bearer tokens
-// using JWKS from dev-1232de9a.auth0.com
-const checkJwt = jwt({
-    secret: jwksRsa.expressJwtSecret({
-        cache: true,
-        rateLimit: true,
-        jwksRequestsPerMinute: 5,
-        jwksUri: `https://${authConfig.domain}/.well-known/jwks.json`
-    }),
-
-    audience: authConfig.audience,
-    issuer: `https://${authConfig.domain}/`,
-    algorithm: ["RS256"]
-});
 
 
 app.use('/', index);
