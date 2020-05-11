@@ -2,7 +2,7 @@
   "name": "clackur-app-backend",
   "version": "1.0.0",
   "description": "",
-  "main": "app.js",
+  "main": "./bin/www",
   "scripts": {
     "start": "per-env",
     "start:development": "nodemon -r dotenv/config ./bin/www",
@@ -28,7 +28,6 @@
   },
   "devDependencies": {
     "dotenv-cli": "^3.1.0",
-    "faker": "^4.1.0",
     "nodemon": "^2.0.2",
     "sequelize-cli": "^5.5.1"
   },

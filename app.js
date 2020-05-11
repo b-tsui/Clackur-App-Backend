@@ -13,7 +13,9 @@ const app = express();
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(cors());
+
 const index = require('./routes/index')
+const usersRouter = require('./routes/users');
 
 // Set up Auth0 configuration
 const authConfig = {
@@ -38,6 +40,7 @@ const checkJwt = jwt({
 
 
 app.use('/', index);
+app.use('/users', usersRouter)
 
 app.get('/authorized', checkJwt, (req, res) => {
     res.send('Secured Resource');
