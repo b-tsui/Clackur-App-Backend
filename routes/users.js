@@ -1,5 +1,4 @@
 const express = require("express");
-const { check } = require("express-validator");
 const { asyncHandler, handleValidationErrors } = require("../utils");
 const { checkJwt } = require("../auth")
 const router = express.Router();
@@ -23,6 +22,7 @@ router.post(
 
 router.patch(
     '/login',
+    checkJwt,
     asyncHandler(async (req, res) => {
         const { name, email } = req.body;
         const user = await User.findOne({
@@ -32,15 +32,12 @@ router.patch(
         });
         if (!user) {
             const newUser = await User.create({ email, name })
-            res.status(201).json({
-                newUser
-            })
         } else {
             const loggedUser = await User.update({ email, name }, { where: { email } })
-            res.status(201).json({
-                loggedUser
-            })
         }
+        res.status(201).json({
+            user
+        })
     })
 );
 
