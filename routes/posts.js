@@ -5,8 +5,9 @@ const router = express.Router();
 const db = require("../db/models");
 const { Post } = db;
 const upload = require('./uploadUtil')
-const singleUpload = upload.single('image')
-
+const singleUpload = upload.single('file')
+const multer = require('multer');
+const uploadMulter = multer();
 //returns all posts
 router.get('/', asyncHandler(async (req, res) => {
     const posts = await Post.findAll();
