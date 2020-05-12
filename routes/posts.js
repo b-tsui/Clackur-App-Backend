@@ -13,6 +13,7 @@ router.get('/', asyncHandler(async (req, res) => {
     res.status(201).json({ posts });
 }))
 
+//uploads image from form data to aws and returns an image url
 router.post('/image/upload', checkJwt, function (req, res) {
     singleUpload(req, res, function (err) {
         if (err) {
@@ -22,12 +23,16 @@ router.post('/image/upload', checkJwt, function (req, res) {
     })
 })
 
-// router.post(
-//     '/new',
-//     checkJwt,
-//     asyncHandler(async (req, res) => {
-//         { categoryId, userId, title, description, imageUrl, public }
-//     })
-// );
+router.post(
+    '/new',
+    checkJwt,
+    asyncHandler(async (req, res) => {
+        const { categoryId, userId, title, description, imageUrl, public } = req.body;
+        const parsedCategoryId = await parseInt(categoryId)
+        const parsedUserId = await parseInt(userId)
+        const newPost = await Post.create({ categoryId: parsedCategoryId, userId: parsedUserId, title, description, imageUrl, public });
+        res.status(201).json({ newPost })
+    })
+);
 
 module.exports = router;

@@ -32,12 +32,14 @@ router.patch(
         });
         if (!user) {
             const newUser = await User.create({ email, name })
+            res.status(201).json({ newUser })
         } else {
             const loggedUser = await User.update({ email, name }, { where: { email } })
+            res.status(201).json({
+                user
+            })
         }
-        res.status(201).json({
-            user
-        })
+
     })
 );
 
