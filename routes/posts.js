@@ -3,14 +3,19 @@ const { asyncHandler } = require("../utils");
 const { checkJwt } = require("../auth");
 const router = express.Router();
 const db = require("../db/models");
-const { Post } = db;
+const { Post, Vote } = db;
 const upload = require('./uploadUtil')
 const singleUpload = upload.single('file')
 const multer = require('multer');
 const uploadMulter = multer();
-//returns all posts
+//returns all posts and like data
 router.get('/', asyncHandler(async (req, res) => {
-    const posts = await Post.findAll();
+    const posts = await Post.findAll({
+        include: [{
+            model: Vote
+        }]
+    });
+
     res.status(201).json({ posts });
 }))
 
