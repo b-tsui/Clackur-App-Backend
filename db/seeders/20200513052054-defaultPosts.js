@@ -31,22 +31,31 @@ module.exports = {
           imageUrl: "https://i.redd.it/7a8ez6hapbo41.jpg",
           createdAt: new Date(),
           updatedAt: new Date(),
+        },
+        {
+          categoryId: 1,
+          userId: 2,
+          title: "Poster",
+          description: "Tokyo Mechanical Keyboard Meetup: May, 25, 2019",
+          imageUrl: "https://i.redd.it/vcumwn3t4cy21.png",
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          categoryId: 1,
+          userId: 2,
+          title: "50 Cent Clacks",
+          description: "50 Cent clacking on an ergodox keyboard",
+          imageUrl: "https://i.redd.it/ernyzr1hubg41.jpg",
+          createdAt: new Date(),
+          updatedAt: new Date(),
         }
       ]
     )
-    /*
-      Add altering commands here.
-      Return a promise to correctly handle asynchronicity.
-
-      Example:
-      return queryInterface.bulkInsert('People', [{
-        name: 'John Doe',
-        isBetaMember: false
-      }], {});
-    */
   },
 
   down: (queryInterface, Sequelize) => {
+    return queryInterface.bulkDelete('Post', null, {});
     /*
       Add reverting commands here.
       Return a promise to correctly handle asynchronicity.
