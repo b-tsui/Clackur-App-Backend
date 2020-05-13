@@ -15,12 +15,12 @@ app.use(cors());
 const index = require('./routes/index')
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
-
-
+const votesRouter = require('./routes/votes')
 
 app.use('/', index);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
+app.use('/', votesRouter)
 
 app.get('/authorized', checkJwt, (req, res) => {
     res.send('Secured Resource');
