@@ -14,9 +14,12 @@ router.get('/posts/:id/votes', asyncHandler(async (req, res) => {
 
 //creates a new upvote if user votes for first time on post
 //if post is already upvoted, resets the vote otherwise updates to upvote
-router.patch('/posts/:id/upvote', checkJwt, asyncHandler(async (req, res) => {
+router.patch('/posts/:id(\\d+)/upvote', checkJwt, asyncHandler(async (req, res) => {
+    console.log('patch route')
     const postId = parseInt(req.params.id, 10);
     const { userId } = req.body;
+    console.log(req.body)
+    const parsedUserId = parseInt(userId, 10)
     const voteRes = await Vote.findOne({
         where: {
             postId,
@@ -41,7 +44,7 @@ router.patch('/posts/:id/upvote', checkJwt, asyncHandler(async (req, res) => {
             upVote: true,
             downVote: false
         }, { where: { postId, userId } });
-        res.status(201).json({ voteRes })
+        res.status(206).json({ voteRes })
     }
 }))
 
@@ -72,7 +75,7 @@ router.patch('/posts/:id/downvote', checkJwt, asyncHandler(async (req, res) => {
             upVote: false,
             downVote: true
         }, { where: { postId, userId } });
-        res.status(201).json({ voteRes })
+        res.status(206).json({ voteRes })
     }
 }))
 

@@ -14,7 +14,6 @@ const s3 = new aws.S3();
 
 const fileFilter = (req, file, cb) => {
     console.log(file);
-    console.log(req);
     if (file.mimetype === 'image/jpeg' || file.mimetype === 'image/png' || file.mimetype === 'image/gif') {
         cb(null, true)
     } else {
