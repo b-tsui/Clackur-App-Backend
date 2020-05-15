@@ -18,14 +18,14 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          email: 'b@test.com',
-          name: 'b',
+          email: 'bt@test.com',
+          name: 'bt',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
         {
-          email: 'b@test.com',
-          name: 'b',
+          email: 'jh@test.com',
+          name: 'Jessica Ho',
           createdAt: new Date(),
           updatedAt: new Date(),
         },

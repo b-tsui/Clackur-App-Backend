@@ -13,7 +13,8 @@ router.get('/', asyncHandler(async (req, res) => {
     const posts = await Post.findAll({
         include: [{
             model: Vote
-        }]
+        }],
+        order: [['id', 'DESC']]
     });
     res.status(201).json({ posts });
 }))
@@ -27,7 +28,7 @@ router.get('/:id', asyncHandler(async (req, res) => {
 // returns all posts for a given user
 router.get('/user/:userId', asyncHandler(async (req, res) => {
     const userId = parseInt(req.params.userId)
-    const posts = await Post.findAll({ where: { userId }, include: Vote });
+    const posts = await Post.findAll({ where: { userId }, include: Vote, order: [['id', 'DESC']] });
     res.status(201).json({ posts })
 }))
 
