@@ -13,7 +13,19 @@ module.exports = {
         },
         {
           email: 'b@test.com',
-          name: 'btsui',
+          name: 'b',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          email: 'b@test.com',
+          name: 'b',
+          createdAt: new Date(),
+          updatedAt: new Date(),
+        },
+        {
+          email: 'b@test.com',
+          name: 'b',
           createdAt: new Date(),
           updatedAt: new Date(),
         },
