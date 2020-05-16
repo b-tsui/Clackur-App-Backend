@@ -7,7 +7,9 @@ const { Post, Vote, User } = db;
 const upload = require('./uploadUtil')
 const singleUpload = upload.single('file')
 const multer = require('multer');
-const uploadMulter = multer();
+//fetch is not built into node js but is needed to fetch user data from auth0
+const fetch = require('node-fetch')
+
 //returns all posts and vote data
 router.get('/', asyncHandler(async (req, res) => {
     const posts = await Post.findAll({
@@ -46,10 +48,18 @@ router.post(
     '/new',
     checkJwt,
     asyncHandler(async (req, res) => {
-        const { categoryId, userId, title, description, imageUrl, public } = req.body;
-        const parsedCategoryId = await parseInt(categoryId)
-        const parsedUserId = await parseInt(userId)
-        const newPost = await Post.create({ categoryId: parsedCategoryId, userId: parsedUserId, title, description, imageUrl, public });
+        const { title, description, imageUrl, public } = req.body;
+        const userToken = req.headers['authorization'];
+        const userRes = await fetch("https://dev-1232de9a.auth0.com/userinfo", {
+            headers: {
+                Authorization: `${userToken}`
+            }
+        })
+        const userInfo = await userRes.json({ userRes })
+        const user = await User.findOne({ where: { email: userInfo.email } })
+        const userId = user.dataValues.id
+
+        const newPost = await Post.create({ userId, title, description, imageUrl, public });
         res.status(201).json({ newPost })
     })
 );

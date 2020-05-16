@@ -16,11 +16,13 @@ const index = require('./routes/index')
 const usersRouter = require('./routes/users');
 const postsRouter = require('./routes/posts');
 const votesRouter = require('./routes/votes')
+const commentsRouter = require('./routes/comments')
 
 app.use('/', index);
 app.use('/users', usersRouter);
 app.use('/posts', postsRouter);
 app.use('/', votesRouter)
+app.use('/', commentsRouter)
 
 app.get('/authorized', checkJwt, (req, res) => {
     res.send('Secured Resource');
