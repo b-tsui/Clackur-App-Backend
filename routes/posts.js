@@ -8,7 +8,7 @@ const upload = require('./uploadUtil')
 const singleUpload = upload.single('file')
 const multer = require('multer');
 const uploadMulter = multer();
-//returns all posts and like data
+//returns all posts and vote data
 router.get('/', asyncHandler(async (req, res) => {
     const posts = await Post.findAll({
         include: [{
