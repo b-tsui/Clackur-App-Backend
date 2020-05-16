@@ -8,8 +8,8 @@ const { Post, User, Comment } = db;
 const fetch = require('node-fetch')
 
 router.get('/posts/:postId/comments', asyncHandler(async (req, res) => {
-    const id = parseInt(req.params.postId)
-    const comments = await Comment.findAll({ where: { id } })
+    const postId = parseInt(req.params.postId)
+    const comments = await Comment.findAll({ where: { postId }, include: [{ model: User }] })
     res.status(201).json({ comments })
 }))
 
