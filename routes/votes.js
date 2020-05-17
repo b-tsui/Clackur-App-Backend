@@ -48,7 +48,7 @@ router.patch('/posts/:id(\\d+)/upvote', checkJwt, asyncHandler(async (req, res) 
     }
 }))
 
-router.patch('/posts/:id/downvote', checkJwt, asyncHandler(async (req, res) => {
+router.patch('/posts/:id(\\d+)/downvote', checkJwt, asyncHandler(async (req, res) => {
     const postId = parseInt(req.params.id, 10);
     const { userId } = req.body;
     const voteRes = await Vote.findOne({
