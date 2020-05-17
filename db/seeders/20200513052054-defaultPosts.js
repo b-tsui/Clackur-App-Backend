@@ -6,7 +6,6 @@ module.exports = {
       "Posts",
       [
         {
-          categoryId: 1,
           userId: 2,
           title: "Matte Black Everything",
           description: "black and yellow, black and yellow",
@@ -15,7 +14,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          categoryId: 1,
           userId: 1,
           title: "Aquarium",
           description: "Betta Saga artisan kecaps by Jellykey",
@@ -24,7 +22,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          categoryId: 1,
           userId: 3,
           title: "Dots",
           description: "GMK Dots keyset makes everything you type a password",
@@ -33,7 +30,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          categoryId: 1,
           userId: 2,
           title: "click clack",
           description: "Mechanical keyboard themed valentines card",
@@ -42,7 +38,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          categoryId: 1,
           userId: 4,
           title: "Kirby Keycap",
           description: "Kirby artisan keycap made by CYSM Caps",
@@ -51,7 +46,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          categoryId: 1,
           userId: 2,
           title: "Poster",
           description: "Tokyo Mechanical Keyboard Meetup: May, 25, 2019",
@@ -60,7 +54,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          categoryId: 1,
           userId: 1,
           title: "Watermelon",
           description: "Watermelon keycap on a J02 keyboard",
@@ -69,7 +62,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          categoryId: 1,
           userId: 2,
           title: "50 Cent Clacks",
           description: "50 Cent clacking on an ergodox keyboard",
@@ -78,7 +70,6 @@ module.exports = {
           updatedAt: new Date(),
         },
         {
-          categoryId: 1,
           userId: 3,
           title: "ACNH",
           description: "Animal Crossing themed deskmat and keyset (epbt islander)",
