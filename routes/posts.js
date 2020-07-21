@@ -73,7 +73,7 @@ router.post(
 );
 
 router.delete(
-    '/:postId(\\d+)/delete',
+    '/:postId/delete',
     checkJwt,
     asyncHandler(async (req, res) => {
         const postId = parseInt(req.params.postId);
