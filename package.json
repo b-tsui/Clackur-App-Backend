@@ -19,7 +19,7 @@
     "express-jwt-authz": "^2.3.1",
     "express-openid-connect": "^1.0.1",
     "express-validator": "^6.4.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "jwks-rsa": "^1.8.0",
     "morgan": "^1.10.0",
     "multer": "^1.4.2",
